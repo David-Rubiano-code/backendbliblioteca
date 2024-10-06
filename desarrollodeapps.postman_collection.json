@@ -1,0 +1,1149 @@
+{
+	"info": {
+		"_postman_id": "ab2962ef-2329-4f81-84ed-a384ab4202e2",
+		"name": "desarrollodeapps",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38135410"
+	},
+	"item": [
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "crear_usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codigo\": \"270\",\r\n    \"nombre\": \"pablo Perez\",\r\n    \"telefono\": \"555\",\r\n    \"direccion\": \"Bogota\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/usuarios/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtener_usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/api/v1/usuarios/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtener_usuario_por_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/api/v1/usuarios/66f5bbdee08451da5a43d75c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								"66f5bbdee08451da5a43d75c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizar_usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Julio Martinez\",\r\n    \"telefono\": \"603503127\",\r\n    \"direccion\": \"Calle Regimiento ligero 75\"\r\n   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/usuarios/66f5bbdee08451da5a43d75c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								"66f5bbdee08451da5a43d75c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deshabilitar_usuario",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Julio Martinez\",\r\n    \"telefono\": \"603503127\",\r\n    \"direccion\": \"Calle Regimiento ligero 75\"\r\n   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/usuarios/66f5bbdee08451da5a43d75c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								"66f5bbdee08451da5a43d75c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Loclalizaciones",
+			"item": [
+				{
+					"name": "crear_localizacion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"seccion\" : 1,\r\n        \"estanteria\" : 1\r\n       \r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/localizacions/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"localizacions",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtener_localizacion",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMDc1IiwiaWF0IjoxNzI3NjU1MDA5LCJleHAiOjE3Mjc3NDE0MDl9.n7qQr6s32HnB3IuMG_MgGjiI54OTjsKf7q-2EHeQzug",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"seccion\" : 1,\r\n        \"estanteria\" : 1\r\n       \r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/localizacions/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"localizacions",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtener_localizacion_por_Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"seccion\" : 1,\r\n        \"estanteria\" : 1\r\n       \r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/localizacions/66f6cf3a9f2f1a0c31a0a381",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"localizacions",
+								"66f6cf3a9f2f1a0c31a0a381"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizar_localizacion",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"seccion\" : 2,\r\n        \"estanteria\" : 4\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/localizacions/66f6d2fd4c90628fd3804d22",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"localizacions",
+								"66f6d2fd4c90628fd3804d22"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Editoriales",
+			"item": [
+				{
+					"name": "crear_editorial",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"nombre\" : \"Escuela Colombia de Ingeniería\",\r\n        \"descripcion\" : \"editorial Escuela Colombia de Ingeniería\"\r\n    \r\n    }\r\n   \r\n  ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/editorials/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"editorials",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtener_editorial",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"seccion\" : 1,\r\n        \"estanteria\" : 1\r\n       \r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/editorials/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"editorials",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtener_editorial_por_Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"seccion\" : 1,\r\n        \"estanteria\" : 1\r\n       \r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/editorials/66f6d5ef5e4278f7bafa19a7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"editorials",
+								"66f6d5ef5e4278f7bafa19a7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizar_editorial",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n        \"nombre\" : \"springer\",\r\n        \"descripcion\" : \"editorial springer\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/editorials/66f6d5ef5e4278f7bafa19a7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"editorials",
+								"66f6d5ef5e4278f7bafa19a7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Autores",
+			"item": [
+				{
+					"name": "crear_autor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"codigo\" : \"101010\",\r\n        \"nombre\" : \"Leidy Londoño\",\r\n        \"descripcion\" : \"Ha escrito 2000 obras\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/autors/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"autors",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtener_autor",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"seccion\" : 1,\r\n        \"estanteria\" : 1\r\n       \r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/autors/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"autors",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtener_autor_por_Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"seccion\" : 1,\r\n        \"estanteria\" : 1\r\n       \r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/autors/66f99d6436626812683fa127",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"autors",
+								"66f99d6436626812683fa127"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizar_autor",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"nombre\" : \"Leidy Londoño\",\r\n        \"descripcion\" : \"Ha escrito 2001 obras\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/autors/66f99d6436626812683fa127",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"autors",
+								"66f99d6436626812683fa127"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Libros",
+			"item": [
+				{
+					"name": "crear_libro",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "       { \"codigo\" : \"3\",\r\n        \"titulo\" : \"Calculo II\",\r\n        \"ISBN\" : \"578-84\",\r\n        \"editorial\" : {\r\n           \"_id\" : \"66f6d6c0205d11bf41403bd8\"\r\n        },\r\n        // muchos a muchos\r\n        \"autores\" : [\r\n            {\r\n               \"_id\" :  \"66f99cdab6cffba2170bfed4\"\r\n            },\r\n            {\r\n                \"_id\" :  \"66f99d3336626812683fa124\"\r\n             }\r\n        ],\r\n        \"paginas\" : 1200\r\n      \r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/libros/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"libros",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtener_libro",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMDc1IiwiaWF0IjoxNzI3NjU1MDA5LCJleHAiOjE3Mjc3NDE0MDl9.n7qQr6s32HnB3IuMG_MgGjiI54OTjsKf7q-2EHeQzug",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"seccion\" : 1,\r\n        \"estanteria\" : 1\r\n       \r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/libros/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"libros",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtener_libro_por_id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"seccion\" : 1,\r\n        \"estanteria\" : 1\r\n       \r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/libros/66f6cf3a9f2f1a0c31a0a381",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"libros",
+								"66f6cf3a9f2f1a0c31a0a381"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizar_libro",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "       { \"codigo\" : \"3\",\r\n        \"titulo\" : \"Calculo II\",\r\n        \"ISBN\" : \"778-83\",\r\n        \"editorial\" : {\r\n           \"_id\" : \"66f6d6c0205d11bf41403bd8\"\r\n        },\r\n       \r\n        \"paginas\" : 2001\r\n      \r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/libros/66f9b01658973491306b95ff",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"libros",
+								"66f9b01658973491306b95ff"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ejemplares",
+			"item": [
+				{
+					"name": "crear_ejemplar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"codigo\" : \"2000-2\",\r\n        \"localizacion\" : {\r\n            \"_id\" : \"66f6d0159f2f1a0c31a0a387\"\r\n        },\r\n        \"libro\" : {\r\n            \"_id\" : \"66f9b0c058973491306b9605\"\r\n        }\r\n        \r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/ejemplars/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"ejemplars",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtener_ejemplar",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"seccion\" : 1,\r\n        \"estanteria\" : 1\r\n       \r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/ejemplars/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"ejemplars",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtener_ejemplar_por_id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"codigo\" : \"0000-4\",\r\n        \"localizacion\" : {\r\n            \"_id\" : \"66f6d0159f2f1a0c31a0a387\"\r\n        },\r\n        \"libro\" : {\r\n            \"_id\" : \"66f9b0c058973491306b9605\"\r\n        }\r\n        \r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/ejemplars/66f9c506564186ec5b74f2d0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"ejemplars",
+								"66f9c506564186ec5b74f2d0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizar_ejemplar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"codigo\" : \"0000-1\",\r\n        \"localizacion\" : {\r\n            \"_id\" : \"66f6d0159f2f1a0c31a0a387\"\r\n        },\r\n        \"libro\" : {\r\n            \"_id\" : \"66f9b0c058973491306b9605\"\r\n        }\r\n        \r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/ejemplars/66f9c506564186ec5b74f2d0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"ejemplars",
+								"66f9c506564186ec5b74f2d0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Gestores",
+			"item": [
+				{
+					"name": "crear_gestor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "secret",
+								"value": "$apr1$ilx3hb6s$o2cy9E9n0Qj7qygYkHefW1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"documento\":\"10780\",\r\n    \"nombre\":\"Abel Aguilar\",\r\n    \"password\":\"1234567\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/gestores/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"gestores",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"documento\":\"1075\",\r\n    \"password\":\"1234567\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/gestores/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"gestores",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Prestamos",
+			"item": [
+				{
+					"name": "crear_prestamo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMDc1IiwiaWF0IjoxNzI3OTAyMzAzLCJleHAiOjE3Mjc5ODg3MDN9.dGQ_dsx7411avSL_Q3ZoX_a6Eq7xa0uycLBkKtExBbI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  { \r\n        \"ejemplar\" : {\r\n           \"_id\" : \"66f9cad6564186ec5b74f2f3\"\r\n        },\r\n       \r\n        \"usuario\" : {\r\n           \"_id\" : \"66f5bbdee08451da5a43d75c\"\r\n        }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/prestamos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"prestamos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "consultar_prestamo",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMDc1IiwiaWF0IjoxNzI3NjU1MDA5LCJleHAiOjE3Mjc3NDE0MDl9.n7qQr6s32HnB3IuMG_MgGjiI54OTjsKf7q-2EHeQzug",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  { \r\n        \"ejemplar\" : {\r\n           \"_id\" : \"66f9ca78564186ec5b74f2e9\"\r\n        },\r\n       \r\n        \"usuario\" : {\r\n           \"_id\" : \"66f5be93f78253a5b55dc605\"\r\n        }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/prestamos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"prestamos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "devolver_ejemplar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMDc1IiwiaWF0IjoxNzI3OTAyMzAzLCJleHAiOjE3Mjc5ODg3MDN9.dGQ_dsx7411avSL_Q3ZoX_a6Eq7xa0uycLBkKtExBbI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  { \r\n        \"gestor\" : {\r\n           \"_id\" : \"66f9ca78564186ec5b74f2e9\"\r\n        },\r\n       \r\n        \"prestamo\" : {\r\n           \"_id\" : \"66f5be93f78253a5b55dc605\"\r\n        }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/prestamos/66fa31b17d1c622a5bb8c188",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"prestamos",
+								"66fa31b17d1c622a5bb8c188"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cobrar_multa",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMDc1IiwiaWF0IjoxNzI3OTAyMzAzLCJleHAiOjE3Mjc5ODg3MDN9.dGQ_dsx7411avSL_Q3ZoX_a6Eq7xa0uycLBkKtExBbI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  { \r\n        \"gestor\" : {\r\n           \"_id\" : \"66f9ca78564186ec5b74f2e9\"\r\n        },\r\n       \r\n        \"prestamo\" : {\r\n           \"_id\" : \"66f5be93f78253a5b55dc605\"\r\n        }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/prestamos/cobrar/66fa31b17d1c622a5bb8c188",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"prestamos",
+								"cobrar",
+								"66fa31b17d1c622a5bb8c188"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "consultar_prestamo_por_usuario",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMDc1IiwiaWF0IjoxNzI3OTAyMzAzLCJleHAiOjE3Mjc5ODg3MDN9.dGQ_dsx7411avSL_Q3ZoX_a6Eq7xa0uycLBkKtExBbI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  { \r\n        \"ejemplar\" : {\r\n           \"_id\" : \"66f9ca78564186ec5b74f2e9\"\r\n        },\r\n       \r\n        \"usuario\" : {\r\n           \"_id\" : \"66f5be93f78253a5b55dc605\"\r\n        }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/prestamos/usuario/66f5bbdee08451da5a43d75c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"prestamos",
+								"usuario",
+								"66f5bbdee08451da5a43d75c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "consultar_prestamo_por-usuario_y_estado",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMDc1IiwiaWF0IjoxNzI3OTAyMzAzLCJleHAiOjE3Mjc5ODg3MDN9.dGQ_dsx7411avSL_Q3ZoX_a6Eq7xa0uycLBkKtExBbI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  { \r\n        \"ejemplar\" : {\r\n           \"_id\" : \"66f9ca78564186ec5b74f2e9\"\r\n        },\r\n       \r\n        \"usuario\" : {\r\n           \"_id\" : \"66f5be93f78253a5b55dc605\"\r\n        }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/v1/prestamos/usuario/66f5bbdee08451da5a43d75c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"prestamos",
+								"usuario",
+								"66f5bbdee08451da5a43d75c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
