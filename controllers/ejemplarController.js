@@ -37,16 +37,20 @@ const crearEjemplar= async (req=request,res=response)=>{
     
 }
 //consultar ejemplars
-const consultarEjemplar= async (req=request,res=response)=>{
+const consultarEjemplar = async (req = request, res = response) => {
     try {
-        
-        const ejemplares= await Ejemplar.find()
+        const ejemplares = await Ejemplar.find()
+        .populate({
+            path: 'libro',
+            select: '_id titulo'
+        })
         return res.json(ejemplares)
-    } catch (e) {
+    } catch(e) {
         console.log(e)
-        return res.status(500).json(e)
+        return res.status(500).json({e})
     }
 }
+
 //consultar un ejemplar por id
 const consultarEjemplarPorID = async (req = request, res = response) => {
     try {

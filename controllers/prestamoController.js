@@ -1,9 +1,9 @@
 const { request, response } = require('express')
 const Prestamo = require('../models/prestamo')
-const Usuario=require('../models/usuario')
+const Usuario = require('../models/usuario')
 const Ejemplar = require('../models/ejemplar')
 const Gestor = require('../models/gestor')
-const schedule= require('node-schedule')
+const schedule = require('node-schedule')
 const dayjs = require('dayjs')
 
 
@@ -18,7 +18,7 @@ const job = schedule.scheduleJob(process.env.CRON, async () => {
         if (prestamo.fechaADevolver < hoy) {
             // TODO: Tambien se puede restar fechas y multi por 1000
             const dias = dayjs().diff(prestamo.fechaADevolver, 'day')
-            multa = dias*Number(process.env.MULTA_POR_DIA)
+            multa = dias * Number(process.env.MULTA_POR_DIA)
             multaPagada = false
         }
         const cambios = {
@@ -29,67 +29,72 @@ const job = schedule.scheduleJob(process.env.CRON, async () => {
     })
 })
 
-const prestarEjemplar=async(req=request,res=response)=>{
+const prestarEjemplar = async (req = request, res = response) => {
     try {
-        const {ejemplar,usuario} = req.body
-        const uid=req.uid
+        const { ejemplar, usuario } = req.body
+        const uid = req.uid
         //validacionES
         //1. usuario valido
         const usuarioBD = await Usuario.findById(usuario._id)
-        if(!usuarioBD) {
-        return res.status(400).json({
-            msj: 'Usuario no existe'
-        })
+        if (!usuarioBD) {
+            return res.status(400).json({
+                msj: 'Usuario no existe'
+            })
+        }
+        if(!usuarioBD.enabled) {
+            return res.status(400).json({
+                msj: 'A este usuario no se le puede prestar'
+            })
         }
         //2. que sea un ejemplar valido
         const ejemplarBD = await Ejemplar.findById(ejemplar._id)
-        if(!ejemplarBD) {
+        if (!ejemplarBD) {
             return res.status(400).json({
                 msj: 'Ejemplar no existe'
             })
         }
 
         //3. gestor valido
-        const gestorBD = await Gestor.findOne({documento : uid})
-        if(!gestorBD) {
+        const gestorBD = await Gestor.findOne({ documento: uid })
+        if (!gestorBD) {
             return res.status(400).json({
                 msj: 'Gestor no existe'
             })
         }
         //4. que el ejemplar no este prestado
         const prestamoPorEjemplar = await Prestamo.find({
-            $and : [
-                { ejemplar : ejemplarBD },
-                { fechaDevolucion : null }
+            $and: [
+                { ejemplar: ejemplarBD },
+                { fechaDevolucion: null }
             ]
         })
-   
-        if(prestamoPorEjemplar && prestamoPorEjemplar.length > 0) {
+
+        if (prestamoPorEjemplar && prestamoPorEjemplar.length > 0) {
             return res.status(400).json({
                 msj: 'Este ejemplar ha sido prestado'
             })
         }
         //5. que la persona no pase el limite de prestamos
-        let prestamoDBporUsuario= []
-        prestamoDBporUsuario= await Prestamo.find({
-            usuario:usuarioBD
+        let prestamoDBporUsuario = []
+        prestamoDBporUsuario = await Prestamo.find({
+            usuario: usuarioBD
         })
 
-        const prestamosNoDevueltos=
+        const prestamosNoDevueltos =
             prestamoDBporUsuario.filter(prest =>
                 prest && !prest.fechaDevolucion)
-        const cantNodevueltos= prestamosNoDevueltos.length
-        if(cantNodevueltos >= process.env.PRESTAMOS_MAX_SIMULTANEOS){
+        const cantNodevueltos = prestamosNoDevueltos.length
+        if (cantNodevueltos >= process.env.PRESTAMOS_MAX_SIMULTANEOS) {
             return res.status(400).json({
                 msj: 'El usuario ya tiene el máximo de prestamos'
             })
         }
         //6. que no tengs multas
-        const prestamosConMultas = 
+        const prestamosConMultas =
             prestamoDBporUsuario
                 .filter(prest => (!prest.multaPagada && prest.multa > 0))
         const cantConMultas = prestamosConMultas.length
-        if(cantConMultas > 0) {
+        if (cantConMultas > 0) {
             return res.status(400).json({
                 msj: 'El usuario tiene una multa, no se le puede prestar'
             })
@@ -97,7 +102,7 @@ const prestarEjemplar=async(req=request,res=response)=>{
         //6. horario: hora inicial y hora final
         const hoy = new Date()
         const horaActual = hoy.getHours()
-        if(horaActual < process.env.HORA_INICIAL_PRESTAMO
+        if (horaActual < process.env.HORA_INICIAL_PRESTAMO
             || horaActual > process.env.HORA_FINAL_PRESTAMOS
         ) {
             return res.status(400).json({
@@ -106,15 +111,15 @@ const prestarEjemplar=async(req=request,res=response)=>{
             })
         }
 
-        data={
-            ejemplar:ejemplarBD,
-            usuario:usuarioBD,
-            gestor:{
-                _id:gestorBD._id
+        data = {
+            ejemplar: ejemplarBD,
+            usuario: usuarioBD,
+            gestor: {
+                _id: gestorBD._id
             }
 
         }
-        const prestamo= new Prestamo(data)
+        const prestamo = new Prestamo(data)
         await prestamo.save()
         console.log("Creado")
         return res.status(201).json(prestamo)
@@ -122,15 +127,15 @@ const prestarEjemplar=async(req=request,res=response)=>{
         console.log(e)
         return res.status(500).json(e)
     }
-    
+
 }
-const devolverEjemplar = 
+const devolverEjemplar =
     async (req = request, res = response) => {
         try {
             const uid = req.uid
             const id = req.params.id
-            const gestorBD = await Gestor.findOne({documento : uid})
-            if(!gestorBD) {
+            const gestorBD = await Gestor.findOne({ documento: uid })
+            if (!gestorBD) {
                 return res.status(400).json({
                     msj: 'Gestor no existe'
                 })
@@ -141,23 +146,23 @@ const devolverEjemplar =
             }
 
             data.fechaDevolucion = new Date()
-   
-            const prestamo = 
-                await Prestamo.findByIdAndUpdate(id, data, {new : true})
-            return res.status(201).json(prestamo)
-        } catch(e) {
-            console.log(e)
-            return res.status(500).json({e})
-        }
-}
 
-const cobrarMulta = 
+            const prestamo =
+                await Prestamo.findByIdAndUpdate(id, data, { new: true })
+            return res.status(201).json(prestamo)
+        } catch (e) {
+            console.log(e)
+            return res.status(500).json({ e })
+        }
+    }
+
+const cobrarMulta =
     async (req = request, res = response) => {
         try {
             const uid = req.uid
             const id = req.params.id
-            const gestorBD = await Gestor.findOne({documento : uid})
-            if(!gestorBD) {
+            const gestorBD = await Gestor.findOne({ documento: uid })
+            if (!gestorBD) {
                 return res.status(400).json({
                     msj: 'Gestor no existe'
                 })
@@ -169,36 +174,32 @@ const cobrarMulta =
 
             data.multaPagada = true
             data.fechaCobro = new Date()
-            const prestamo = 
-                await Prestamo.findByIdAndUpdate(id, data, {new : true})
+            const prestamo =
+                await Prestamo.findByIdAndUpdate(id, data, { new: true })
             return res.status(201).json(prestamo)
-        } catch(e) {
+        } catch (e) {
             console.log(e)
-            return res.status(500).json({e})
+            return res.status(500).json({ e })
         }
-}
+    }
 
-const consultaPrestamos = async (req = request, res = response) => {
-        try {
-            const prestamos = await Prestamo.find()
-             return res.json(prestamos)
-           } catch(e) {
-              console.log(e)
-              return res.status(500).json({e})
-          }
-}
-
-const consultaPrestamoPorUsuario = 
+const consultaPrestamos =
     async (req = request, res = response) => {
         try {
-            const { id } = req.params
-            const usuarioBD = await Usuario.findById(id)
-            if (!usuarioBD) {
-                return res.status(404).json({
-                    msj: 'Usuario no encontrado'
+            const prestamos = await Prestamo
+                .find()
+                .populate({
+                    path: 'ejemplar',
+                    select: '_id codigo'
                 })
-            }
-            const prestamos = await Prestamo.find({ usuario: usuarioBD._id })
+                .populate({
+                    path: 'usuario',
+                    select: '_id nombre'
+                })
+                .populate({
+                    path: 'gestor',
+                    select: '_id nombre'
+                })
             return res.json(prestamos)
         } catch (e) {
             console.log(e)
@@ -206,34 +207,65 @@ const consultaPrestamoPorUsuario =
         }
     }
 
-const consultaPrestamosPorUsuarioYEstado = 
+// TODO: CONSULTA PRESTAMOS PAGINADO
+
+const consultaPrestamosPorUsuario =
     async (req = request, res = response) => {
-    try {
-       const { id, estado } = req.params
-       const usuarioBD = await Usuario.findById(id)
-       const fechaDevolucion = 
-        (estado === 'activo') ? { $ne : null } : null // op. ternario
-       if(!usuarioBD) {
-        return res.status(400).json({
-            msj: 'Usuario no existe'
-        })
-       }
-       const prestamos = await Prestamo.find({
-            usuario : usuarioBD,
-            fechaDevolucion
-        })
-       return res.json(prestamos)
-    } catch(e) {
-        console.log(e)
-        return res.status(500).json({e})
-    } 
-}   
+        try {
+            const { id } = req.params
+            const usuarioBD = await Usuario.findById(id)
+            if (!usuarioBD) {
+                return res.status(400).json({
+                    msj: 'Usuario no existe'
+                })
+            }
+            const prestamos = await Prestamo
+                .find({ usuario: usuarioBD })
+                .populate({
+                    path: 'ejemplar'
+                })
+                .populate({
+                    path: 'usuario'
+                })
+                .populate({
+                    path: 'gestor'
+                })
+            return res.json(prestamos)
+        } catch (e) {
+            console.log(e)
+            return res.status(500).json({ e })
+        }
+    }
+
+
+const consultaPrestamosPorUsuarioYEstado =
+    async (req = request, res = response) => {
+        try {
+            const { id, estado } = req.params
+            const usuarioBD = await Usuario.findById(id)
+            const fechaDevolucion =
+                (estado === 'activo') ? { $ne: null } : null // op. ternario
+            if (!usuarioBD) {
+                return res.status(400).json({
+                    msj: 'Usuario no existe'
+                })
+            }
+            const prestamos = await Prestamo.find({
+                usuario: usuarioBD,
+                fechaDevolucion
+            })
+            return res.json(prestamos)
+        } catch (e) {
+            console.log(e)
+            return res.status(500).json({ e })
+        }
+    }
 
 module.exports = {
     prestarEjemplar,
     devolverEjemplar,
     consultaPrestamos,
     cobrarMulta,
-    consultaPrestamoPorUsuario,
+    consultaPrestamosPorUsuario,
     consultaPrestamosPorUsuarioYEstado
 }

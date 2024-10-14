@@ -26,6 +26,10 @@ const EjemplarSchema =Schema({
             type:Date,
             
         },
+        prestado: {
+            type: Boolean,
+            default: false
+        }
        
 
 })
